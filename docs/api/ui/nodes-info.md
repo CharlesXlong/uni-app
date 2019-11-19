@@ -17,11 +17,13 @@
 
 **代码示例**
 ```javascript
-const query = uni.createSelectorQuery().in(this);
-query.select('#id').boundingClientRect(data => {
-  console.log("得到布局位置信息" + JSON.stringify(data));
-  console.log("节点离页面顶部的距离为" + data.top);
-}).exec();
+const query = uni.createSelectorQuery()
+query.select('#the-id').boundingClientRect()
+query.selectViewport().scrollOffset()
+query.exec(function(res){
+  res[0].top       // #the-id节点的上边界坐标
+  res[1].scrollTop // 显示区域的竖直滚动位置
+})
 ```
 
 ### selectorQuery.select(selector)
